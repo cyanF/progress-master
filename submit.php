@@ -23,23 +23,22 @@
 		$index = $_POST["index"];
 		$tasks[$index]['complete'] = $status;
 		$data['tasks'] = $tasks;
-		file_put_contents($filename, json_encode($data));
+		file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
 	}else if($action == "add"){
-		$item = $_POST["item"];
 		$taskToAdd = array(
-			"task_name" => $item,
-			"task_discription" => "test discription",
+			"task_name" => $_POST["title"],
+			"task_description" => $_POST["task_description"],
       		"complete" => "uc",
       		"collaborator" => array(
       			"group" => array("control"),
-      			"user" => array()
+      			"user" => array("")
       		),
-      		"due_date" => "2015-06-30 23:59:59",
+      		"due_date" => $_POST["due_date"],
       		"task_color" => "default"
 		);
 		array_push($tasks, $taskToAdd);
 		$data['tasks'] = $tasks;
-		file_put_contents($filename, json_encode($data));
+		file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
 	}else{
 		echo "invalid action";
 	}

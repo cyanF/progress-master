@@ -6,6 +6,7 @@ function top(){?>
 	<head>
 		<meta charset="utf-8" />
 		<title>Doubi Chuunibyou Studio</title>
+		<script src="countDown.js" type="text/javascript"></script> 
 		<link href="style.css" type="text/css" rel="stylesheet" />
 		<link href="favicon.ico" type="image/ico" rel="shortcut icon" />
 	</head>

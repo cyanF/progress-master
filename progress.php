@@ -13,13 +13,6 @@
 	$tasks = $userInfo['tasks']; // a list of tasks
 	$groups = $userInfo['groups']; // a list of groups this user is in
 
-	// $pCount=count($pTodo);
-	// $gCount=count($gTodo);
-	// $sCount=$pCount+$gCount;
-	
-	//print($gCount);
-	//print($pCount);
-
 	include("common.php");
 	top();
 ?>
@@ -31,6 +24,11 @@
             	$index = 0;
 				foreach ($tasks as $task) {
 					if ($task['complete'] == "uc") {
+						$dateString = $task['due_date'];
+
+						# $date_now = time();
+						$date_due = strtotime($dateString);
+						# $left = $date_due - $date_now;
 				?>
                     <li>
                         <form action = "submit.php" method = "post">
@@ -45,7 +43,21 @@
                             <input type = "hidden" name = "index" value = "<?= $index ?>" />
                             <input type = "submit" value = "Delete" />
                         </form>
-                        <?=$task['task_name']?>
+
+                        <!-- Tooltip testing okay -->
+                        <a href="#" class="tooltip">
+					    <?=$task['task_name']?>
+					    <span>
+					        <strong><?=$task['task_name']?></strong><br />
+					        <?= $task['task_description'] ?>
+					    </span>
+						</a>
+						<!-- Tooltip testing okay -->
+
+                        <div class="countDown" dueDate="<?= $date_due ?>"><?= $left ?></div>
+                        
+
+                        
                     </li>		
 				<?php 
 					}
@@ -55,10 +67,10 @@
 				
 				<!--add-->
 				<li>
-					<form action = "submit.php" method = "post">
+					<form action = "manage.php" method = "post">
 						<input type = "hidden" name = "type" value = "user" />
 						<input type = "hidden" name = "action" value = "add" />
-						<input name= "item" type="text" size="25" autofocus="autofocus" />
+						<input name= "title" type="text" size="25" autofocus="autofocus" />
 						<input type= "submit" value="Add" />
 					</form>
 				</li>
@@ -113,7 +125,7 @@
 							<input type = "hidden" name = "type" value = "group" />
 							<input type = "hidden" name = "action" value = "add" />
 							<input type = "hidden", name = "group_name" value = "<?= $group ?>" />
-							<input type="text" name="item" size="25" autofocus="autofocus" />
+							<input type="text" name="title" size="25" autofocus="autofocus" />
 							<input type="submit" value="Add" />
 						</form>
 					</li>

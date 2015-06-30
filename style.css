@@ -58,3 +58,24 @@ li form input[type="submit"] {
 #todolist li {
 	clear: right;
 }
+
+/* ======= This part is for tooltip ======== */
+a.tooltip {outline:none; }
+a.tooltip strong {line-height:30px;}
+a.tooltip {text-decoration:none;} 
+a.tooltip span {
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:300px; line-height:16px;
+}
+a.tooltip:hover span{
+    display:inline; position:absolute; color: #005AB4; font-size: 12pt;
+    border:2px solid #DCA; background:#fffAF0;}
+    
+/*CSS3 extras*/
+a.tooltip span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+/* ======= This part is for tooltip ======== */
