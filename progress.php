@@ -18,64 +18,8 @@
 ?>
 		<div id="main">  
 			<!-- user's personal todo list 0v0 -->
-			<h2><?=$nickname?>'s To-Do List</h2>
-			<ul id="todolist">
-            	<?php
-            	$index = 0;
-				foreach ($tasks as $task) {
-					if ($task['complete'] == "uc") {
-						$dateString = $task['due_date'];
+			<?php displayUTasks($tasks, $nickname, "user"); ?>
 
-						# $date_now = time();
-						$date_due = strtotime($dateString);
-						# $left = $date_due - $date_now;
-				?>
-                    <li>
-                        <form action = "submit.php" method = "post">
-                            <input type = "hidden" name = "type" value = "user" />
-                            <input type = "hidden" name = "action" value = "complete" />
-                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
-                            <input type = "submit" value = "Complete" />
-                        </form>
-                        <form action = "submit.php" method = "post">
-                        	<input type = "hidden" name = "type" value = "user" />
-                        	<input type = "hidden" name = "action" value = "delete" />
-                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
-                            <input type = "submit" value = "Delete" />
-                        </form>
-
-                        <!-- Tooltip testing okay -->
-                        <a href="#" class="tooltip">
-					    <?=$task['task_name']?>
-					    <span>
-					        <strong><?=$task['task_name']?></strong><br />
-					        <?= $task['task_description'] ?>
-					    </span>
-						</a>
-						<!-- Tooltip testing okay -->
-
-                        <div class="countDown" dueDate="<?= $date_due ?>"><?= $left ?></div>
-                        
-
-                        
-                    </li>		
-				<?php 
-					}
-					$index++;
-				}
-				?>
-				
-				<!--add-->
-				<li>
-					<form action = "manage.php" method = "post">
-						<input type = "hidden" name = "type" value = "user" />
-						<input type = "hidden" name = "action" value = "add" />
-						<input name= "title" type="text" size="25" autofocus="autofocus" />
-						<input type= "submit" value="Add" />
-					</form>
-				</li>
-			</ul>  
-        	
         	<!--user's groups' todo list 0^0-->
         	<?php
 				foreach ($groups as $group) { // $group is a string of group name
@@ -89,69 +33,16 @@
 					$gTasks = $gInfo['tasks'];
 
 					// display data
-			?>
-					<h2><?= $gNickname	 ?>'s To-Do List</h2>
-					<ul id="todolist">
-			<?php
-					$index = 0;
-					foreach ($gTasks as $task) {
-					if ($task['complete'] == "uc") {
-			?>
-                    <li>
-                        <form action = "submit.php" method = "post">
-                            <input type = "hidden" name = "type" value = "group" />
-                            <input type = "hidden" name = "group_name" value = "<?= $group ?>" />
-                            <input type = "hidden" name = "action" value = "complete" />
-                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
-                            <input type = "submit" value = "Complete" />
-                        </form>
-                        <form action = "submit.php" method = "post">
-                        	<input type = "hidden" name = "type" value = "group" />
-                        	<input type = "hidden" name = "group_name" value = "<?= $group ?>" />
-                        	<input type = "hidden" name = "action" value = "delete" />
-                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
-                            <input type = "submit" value = "Delete" />
-                        </form>
-                        <?=$task["task_name"]?>
-                    </li>		
-				<?php 
-					}
-					$index++;
-					}
-				?>
-					<!--add for group-->
-					<li>
-						<form action = "submit.php" method = "post">
-							<input type = "hidden" name = "type" value = "group" />
-							<input type = "hidden" name = "action" value = "add" />
-							<input type = "hidden", name = "group_name" value = "<?= $group ?>" />
-							<input type="text" name="title" size="25" autofocus="autofocus" />
-							<input type="submit" value="Add" />
-						</form>
-					</li>
-					</ul> 
-
-				<?php
+					displayUTasks($gTasks, $gNickname, "group", $group);
 				}
 			?>
+					
 
 			<!-- competed task for user-->
-			<h2><?=$nickname?> has completed these: </h2>
-            
-            <ul id="comList">
-            	<?php
-				foreach ($tasks as $task) {
-					if ($task['complete'] == "c") {
-				?>
-                    <li>
-                        <?=$task['task_name']?>
-                    </li>		
-				<?php 
-					}
-				}
-				?>
-			</ul>
-
+			<?php 
+				displayCTasks($tasks, $nickname);
+			?>
+			
 			<!-- competed task for groups-->
 			<?php
 				foreach ($groups as $group) { // $group is a string of group name
@@ -165,25 +56,97 @@
 					$gTasks = $gInfo['tasks'];
 
 					// display data
-			?>
-			<h2><?=$gNickname?> has completed these: </h2>
-			<ul id="comList">
-            	<?php
-				foreach ($gTasks as $task) {
-					if ($task['complete'] == "c") {
-				?>
-                    <li>
-                        <?=$task['task_name']?>
-                    </li>		
-				<?php 
-					}
+					displayCTasks($gTasks, $gNickname);
 				}
-			}
-			?>			
-			</ul>       
-
+			?>       
 		</div>
 
 <?php
 	bottom();
+
+	// display uncomplete tasks
+	function displayUTasks($tasks, $name, $type, $group_name = ""){ ?>
+		<h2><?=$name?>'s To-Do List</h2>
+			<ul id="todolist">
+            	<?php
+            	$index = 0;
+				foreach ($tasks as $task) {
+					if ($task['complete'] == "uc") {
+						// get the due date, represents as second since 1970.1.1
+						$date_due = strtotime($task['due_date']);
+				?>
+                    <li>
+                        <form action = "submit.php" method = "post">
+                            <input type = "hidden" name = "type" value = "<?= $type ?>" />
+                            <input type = "hidden" name = "group_name" value = "<?= $group_name ?>" />
+                            <input type = "hidden" name = "action" value = "complete" />
+                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
+                            <input type = "submit" value = "Complete" />
+                        </form>
+                        <form action = "submit.php" method = "post">
+                        	<input type = "hidden" name = "type" value = "<?= $type ?>" />
+                        	<input type = "hidden" name = "group_name" value = "<?= $group_name ?>" />
+                        	<input type = "hidden" name = "action" value = "delete" />
+                            <input type = "hidden" name = "index" value = "<?= $index ?>" />
+                            <input type = "submit" value = "Delete" />
+                        </form>
+
+                        <!-- For Tooltip  -->
+                        <a href="#" class="tooltip">
+					    <?=$task['task_name']?>
+					    <span>
+					        <strong><?=$task['task_name']?></strong><br />
+					        <?= $task['task_description'] ?>
+					    </span>
+						</a>
+						<!-- For Tooltip  -->
+
+                        <div class="countDown" dueDate="<?= $date_due ?>"><?= $left ?></div>               
+                    </li>		
+				<?php 
+					}
+					$index++;
+				}
+				?>
+				
+				<!--add-->
+				<li>
+					<form action = "manage.php" method = "post">
+						<input type = "hidden" name = "type" value = "<?= $type ?>" />
+						<input type = "hidden" name = "group_name" value = "<?= $group_name ?>" />
+						<input type = "hidden" name = "action" value = "add" />
+						<input name= "title" type="text" size="25" autofocus="autofocus" />
+						<input type= "submit" value="Add" />
+					</form>
+				</li>
+			</ul>  
+    <?php   	
+	}
+	
+
+	// display completed tasks
+	function displayCTasks($tasks, $name){ ?>
+		<h2><?=$name?> has completed these: </h2>
+		<ul id="comList">
+        	<?php
+			foreach ($tasks as $task) {
+				if ($task['complete'] == "c") {
+			?>
+                <li>
+                    <!-- For Tooltip  -->
+                    <a href="#" class="tooltip">
+				    <?=$task['task_name']?>
+				    <span>
+				        <strong><?=$task['task_name']?></strong><br />
+				        <?= $task['task_description'] ?>
+				    </span>
+					</a>
+					<!-- For Tooltip  -->
+                </li>		
+			<?php 
+				}
+			} ?>
+		</ul>
+<?php	
+	}
 ?>

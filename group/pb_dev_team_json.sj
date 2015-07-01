@@ -1,10 +1,8 @@
 {
-    "username": "cyan",
-    "firstname": "Qingyi",
-    "lastname": "Fan",
-    "nickname": "Cyan",
-    "tasks": [
-        {
+  "name": "dev_team",
+  "nickname": "Dev Team",
+  "tasks": [
+  		{
             "task_name": "\u7ed9\u52a0\u4e0atest description",
             "task_description": "\u9f20\u6807\u79fb\u5728task\u540d\u5b57\u4e0a\u7684\u65f6\u5019 \u8981\u5192\u51fatest description0v0",
             "complete": "c",
@@ -33,7 +31,7 @@
             "task_color": "default",
             "assigner": "cyan"
         },
-        {
+		{
             "task_name": "\u5199add\u7684page0v0",
             "task_description": "add collaborator; \u66f4\u65b0db\u65f6\u4fdd\u8bc1consistency; add color(optional); validate date input, \u5982\u679cinvalid, \u8fd4\u56deadd page; ...",
             "complete": "uc",
@@ -153,10 +151,5 @@
             "due_date": "2015-07-20T23:00",
             "task_color": "default"
         }
-    ],
-    "groups": [
-        "dev_team",
-        "control",
-        "team_tb"
-    ]
+  	]
 }

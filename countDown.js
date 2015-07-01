@@ -16,7 +16,7 @@ function countDown(){
         var minutes = Math.floor(totalSeconds / 60);
         var seconds = totalSeconds % 60;
  
-        var countDown = days + " days " + hours + ":" + minutes + ":" + seconds + " left";
+        var countDown = "------" + days + " days " + hours + ":" + minutes + ":" + seconds + " left";
         tasksToCountDown[index].innerHTML = countDown;
     }
     setTimeout("countDown()", 1000);

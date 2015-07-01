@@ -34,7 +34,8 @@
       			"user" => array("")
       		),
       		"due_date" => $_POST["due_date"],
-      		"task_color" => "default"
+      		"task_color" => "default",
+      		"assigner" => $_SESSION["name"]
 		);
 		array_push($tasks, $taskToAdd);
 		$data['tasks'] = $tasks;
