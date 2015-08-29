@@ -1,8 +1,8 @@
 {
-  "name": "dev_team",
-  "nickname": "Dev Team",
-  "tasks": [
-  		{
+    "name": "dev_team",
+    "nickname": "Dev Team",
+    "tasks": [
+        {
             "task_name": "\u7ed9\u52a0\u4e0atest description",
             "task_description": "\u9f20\u6807\u79fb\u5728task\u540d\u5b57\u4e0a\u7684\u65f6\u5019 \u8981\u5192\u51fatest description0v0",
             "complete": "c",
@@ -31,7 +31,7 @@
             "task_color": "default",
             "assigner": "cyan"
         },
-		{
+        {
             "task_name": "\u5199add\u7684page0v0",
             "task_description": "add collaborator; \u66f4\u65b0db\u65f6\u4fdd\u8bc1consistency; add color(optional); validate date input, \u5982\u679cinvalid, \u8fd4\u56deadd page; ...",
             "complete": "uc",
@@ -64,7 +64,7 @@
         {
             "task_name": "\u628aprogress\u6574\u7406\u4e00\u4e0bQAQ",
             "task_description": "\u9700\u8981factor\u4e00\u4e0bprogress\u91cc\u9762\u7684method, \u8ba9group\u548ccompleted\u90fd\u80fdwork;\u4e0d\u77e5\u9053\u5f53task\u592a\u591a\u8dd1js\u4f1a\u4e0d\u4f1a\u592a\u5361",
-            "complete": "uc",
+            "complete": "c",
             "collaborator": {
                 "group": [
                     "control"
@@ -151,5 +151,5 @@
             "due_date": "2015-07-20T23:00",
             "task_color": "default"
         }
-  	]
+    ]
 }

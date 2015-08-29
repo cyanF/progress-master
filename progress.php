@@ -1,7 +1,13 @@
 <?php
 	session_start();
 	$name = $_SESSION["name"];
-	//$password=$_SESSION["password"];
+		
+	// when session times out or due to other reason,
+	// name cannot be retrieved, jump back to main page.
+	if($name == ""){
+		header("Location: index.php");
+	}
+
 	$pFilename = "user/pb_".$name."_json.sj";
 
 	//get the user json file

@@ -66,7 +66,7 @@
         {
             "task_name": "\u628aprogress\u6574\u7406\u4e00\u4e0bQAQ",
             "task_description": "\u9700\u8981factor\u4e00\u4e0bprogress\u91cc\u9762\u7684method, \u8ba9group\u548ccompleted\u90fd\u80fdwork;\u4e0d\u77e5\u9053\u5f53task\u592a\u591a\u8dd1js\u4f1a\u4e0d\u4f1a\u592a\u5361",
-            "complete": "uc",
+            "complete": "c",
             "collaborator": {
                 "group": [
                     "control"
@@ -152,11 +152,71 @@
             },
             "due_date": "2015-07-20T23:00",
             "task_color": "default"
+        },
+        {
+            "task_name": "\u7ed9personal\u7684task\u52a0\u4e0atab",
+            "task_description": "\u4f8b\u5982\u516c\u53f8\u7684\u4e8b, \u79c1\u4eba\u7684\u4e8b...(optional)",
+            "complete": "uc",
+            "collaborator": {
+                "group": [
+                    "control"
+                ],
+                "user": [
+                    ""
+                ]
+            },
+            "due_date": "2015-08-01T23:00",
+            "task_color": "default"
+        },
+        {
+            "task_name": "\u6211\u8981\u628a\u8fd9\u4e2a\u5199\u5230chrome extension\u4e0a\uff01",
+            "task_description": "\u5982\u9898\uff01",
+            "complete": "uc",
+            "collaborator": {
+                "group": [
+                    "control"
+                ],
+                "user": [
+                    ""
+                ]
+            },
+            "due_date": "2015-08-30T23:00",
+            "task_color": "default"
+        },
+        {
+            "task_name": "\u4f7f\u7528chosen\u505aselect",
+            "task_description": "\u4f7f\u7528chosen\u8fd9\u4e2ajQuery plugin\u6765\u505aselect,(use <optgroup>) \u867d\u7136multiple select\u5e76\u4e0d\u662f\u5f88\u597d\u770b\u7684\u6837\u5b50, \u4f46\u662f\u603b\u6bd4\u539f\u6765\u7684\u597d\u770b\u4e9b= = \u800c\u4e14\u591a\u9009\u4e5f\u6bd4\u8f83\u76f4\u63a5\u660e\u4e86\u3002",
+            "complete": "uc",
+            "collaborator": {
+                "group": [
+                    "control"
+                ],
+                "user": [
+                    ""
+                ]
+            },
+            "due_date": "2015-07-06T23:00",
+            "task_color": "default"
+        },
+        {
+            "task_name": "$bug",
+            "task_description": "\u5404\u79cd\u9700\u8981display\u7684string\u4e2d\u53ef\u80fd\u5305\u542b\u5c16\u62ec\u53f7\uff0c\u4f7f\u7528\u67d0\u4e2a\u65b9\u6cd5\u53bb\u9664= =\uff0c\u5177\u4f53\u627e\u8bfe\u4ef6",
+            "complete": "uc",
+            "collaborator": {
+                "group": [
+                    "control"
+                ],
+                "user": [
+                    ""
+                ]
+            },
+            "due_date": "2015-07-01T23:59",
+            "task_color": "default"
         }
     ],
     "groups": [
-        "dev_team",
         "control",
-        "team_tb"
+        "team_tb",
+        "dev_team"
     ]
 }
